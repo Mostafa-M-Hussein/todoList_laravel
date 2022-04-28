@@ -35,8 +35,21 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+
+        
+    $request->validate( 
+        [
+                    'body' => 'required' , 
+        ]);
+    $task = new Task ()  ;
+    $task->body = $request->body ; 
+    $task->project_id = $request->project_id;  
+    $task->save() ;
+    
+    return back() ; 
+
+        }
+
 
     /**
      * Display the specified resource.

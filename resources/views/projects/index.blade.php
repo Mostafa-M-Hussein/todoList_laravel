@@ -1,28 +1,27 @@
 @extends('layouts.app')
 
 
+
 @section('content')
 <div class="container">
+    <div class="text-dark h6">
+        <a href="#" class="btn btn-outline-info"> Projects </a>
+    </div>
+    <a class="btn btn-outline-primary" href="{{route('add_task')}}"> create new project </a>
+
     <div class="d-flex justify-content-between align-items-center my-5 ">
 
 
-        <div class="text-dark h6">
-            <a href="#" class="btn btn-outline-info"> Projects </a>
-
-
-
-        </div>
+     
         <div class="row">
             @forelse ($projects as $project )
             <div class="card col-md-12 my-4">
 
                 <div class="card-body">
 
-
                     <div class="d-flex">
                         <div class="dropdown mr-1">
 
-                               
                             @if (  !$project->status )
                                  <a  class="drop_down_link badge badge-secondary dropdown-toggle text-light" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">  in progress  </a>
                              @else
@@ -34,16 +33,14 @@
                                     <a  href="{{route('change' , $project->id)}}" class="dropdown-item   statu_change" >{{ $project->status ? "in progress" : "completed" }}</a>
                           </div>
 
-
                         </div>
-
                
                       </div>
 
            
 
 
-                    <h3 class="card-title"> {{$project->title}} </h3>
+                    <h3 class="card-title "> <a href="{{route('sub_tasks' , $project->id )}}" class="text-decoration-none"> {{$project->title}}  </a> </h3>
 
                     <div class="card-text">
                         <p> {{ Str::limit( $project->description ,  150 ) }} </p>
@@ -63,16 +60,11 @@
                 </div>
             </div>
             @empty
-            <a class="btn btn-outline-primary" href="{{route('add_task')}}"> create new project </a>
             @endforelse
 
 
         </div>
 
-
-        <div>
-            <a class="btn btn-outline-primary" href="{{route('add_task')}}"> create new project </a>
-        </div>
 
 
     </div>
@@ -87,11 +79,6 @@
                 alert("dsd");
             el.dropdown('toggle');
             })
-
-    
-    
-
-
 
         })
 
