@@ -31,7 +31,7 @@
                              @endif 
 
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                                    <a  href="{{route('change' , $project->id)}}" class="dropdown-item " >{{ $project->status ? "in progress" : "completed" }}</a>
+                                    <a  href="{{route('change' , $project->id)}}" class="dropdown-item   statu_change" >{{ $project->status ? "in progress" : "completed" }}</a>
                           </div>
 
 
@@ -46,8 +46,19 @@
                     <h3 class="card-title"> {{$project->title}} </h3>
 
                     <div class="card-text">
-                        <p> {{$project->description}} </p>
+                        <p> {{ Str::limit( $project->description ,  150 ) }} </p>
                     </div>
+                    <div class="card-footer bg-transparent">
+                            
+                            <div class="d-flex">
+                               
+                                {{ $project->created_at->diffForHumans() }}      
+                                
+                                                           
+                            </div>
+
+                    </div>
+
 
                 </div>
             </div>
@@ -77,7 +88,14 @@
             el.dropdown('toggle');
             })
 
-    })
+    
+    
+
+
+
+        })
+
+
 </script>
 
 

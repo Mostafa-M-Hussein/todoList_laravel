@@ -90,9 +90,22 @@ class ProjectController extends Controller
 
 
      } 
-    public function show(Project $project)
+    public function show(Project $project , $id )
     {
-        //
+
+
+
+ 
+        
+        if ( $project->user_id == Auth::id() )
+        {
+            return view('projects.show' , compact('project') );
+
+        }
+
+
+        abort(403) ; 
+
     }
 
     /**

@@ -33,3 +33,7 @@ Route::get('/tasks', [App\Http\Controllers\ProjectController::class, 'index'])->
 
 Route::get('/change_status/\{id}', [App\Http\Controllers\ProjectController::class, 'change'])->name('change'); 
 
+
+Route::get('/tasks/{id}', [App\Http\Controllers\ProjectController::class, 'show' ]); 
+
+
